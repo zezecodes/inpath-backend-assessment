@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 
 class DistrictController extends Controller
 {
+    // Displays all the districts within a region
     public function index(Region $region)
     {
         return response()->json($region->districts);
     }
 
+    // Creates districts within a region
     public function store(Request $request, Region $region)
     {
         $fields = $request->validate([
@@ -28,6 +30,7 @@ class DistrictController extends Controller
         return response()->json($district, 201);
     }
 
+    // Displays a particular district
     public function show(Region $region, District $district)
     {
         if ($district->region_id != $region->id) {
@@ -37,6 +40,7 @@ class DistrictController extends Controller
         return response()->json($district);
     }
 
+    //Updates districts
     public function update(Request $request, Region $region, District $district)
     {
         if ($district->region_id != $region->id) {
@@ -60,6 +64,7 @@ class DistrictController extends Controller
         return response()->json($district);
     }
 
+    // Deletes districts
     public function destroy(Region $region, District $district)
     {
         if ($district->region_id != $region->id) {
@@ -71,6 +76,7 @@ class DistrictController extends Controller
         return response()->json(['message' => 'District deleted successfully']);
     }
 
+    // Searches for districts
     public function search(Request $request, Region $region)
     {
         $query = $region->districts();

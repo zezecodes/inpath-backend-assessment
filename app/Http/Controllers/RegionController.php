@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 
 class RegionController extends Controller
 {
+    // Displays all regions
     public function index()
     {
         return Region::all();
     }
 
+    // Creates regions 
     public function store(Request $request)
     {
         $fields = $request->validate([
@@ -24,11 +26,13 @@ class RegionController extends Controller
         return $region;
     }
 
+    // Shows particular regions
     public function show(Region $region)
     {
         return $region;
     }
 
+    // Updates regions
     public function update(Request $request, Region $region)
     {
         $fields = $request->validate([
@@ -39,12 +43,14 @@ class RegionController extends Controller
         return $region;
     }
 
+    // Deletes regions
     public function destroy(Region $region)
     {
         $region->delete();
         return ['region' => "Region was deleted from the database"];
     }
 
+    // Searches for regions
     public function search(Request $request)
     {
         $query = Region::query();
